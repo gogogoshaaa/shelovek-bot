@@ -27,7 +27,7 @@ updates.startPolling()
 })
 
 updates.on('message_new', async (message) => {
-    if(message.senderId != 448409696) {
+    if(message.senderId != 406140312) {
         return
     }
     if(!message.text) {
@@ -39,7 +39,7 @@ updates.on('message_new', async (message) => {
         type = "autolike"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: "Введи токен пользователя, чтобы подключить его к автолайку"
         })
         return
@@ -48,7 +48,7 @@ updates.on('message_new', async (message) => {
         type = "games"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: "Введи токен пользователя, чтобы подключить его к играм"
         })
         return
@@ -57,7 +57,7 @@ updates.on('message_new', async (message) => {
         type = "all"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: "Введи токен пользователя, чтобы подключить его к играм и автолайку"
         })
         return
@@ -68,7 +68,7 @@ updates.on('message_new', async (message) => {
 
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: `Жду новый токен для пользователя в формате "c *token*"`
         })
     }
@@ -77,7 +77,7 @@ updates.on('message_new', async (message) => {
         if(!userToChange) {
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 448409696,
+                peer_id: 406140312,
                 message: `Не указан пользователь для изменения`
             })
             return
@@ -96,7 +96,7 @@ updates.on('message_new', async (message) => {
         if(currentUserLikes.length < 1 && currentUserGames.length < 1) {
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 448409696,
+                peer_id: 406140312,
                 message: `Такой пользователь не найден`
             })
             return
