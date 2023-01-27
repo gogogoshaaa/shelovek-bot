@@ -3,7 +3,9 @@ import VKCaptchaSolver from 'vk-captchasolver'
 import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
 
-const token = "vk1.a.hduNi-7YwnfWrCvs07H6hk_es3y8HmYU3Wt0PNOdidtE6DrcAtLsv3NAeYqTTmiPcGgqz1TxDQUUmZ6vXG2qlL1251i2VamkuUb6x6ZI3dI8M1LZ1_m107JmbYY0n2wxXfXWZpRL67rLooroeXHauSpyZ14NzSA0va3mlcjV5UzPjwBedPrsZKRj4PO6kAmDhmD8ZpHQUcBnVZJa-5fcQA"
+const token = "vk1.a.4QUIPVW4uQ0INxd1fLLdoxPQMaWPt3pOOqkeirnspDa40MsbOaqhTZQq_3tkZW2dXzK9VtffKY5viL6b2Zja4Lm2vOtTkeOHUDNoTqPNUeKBl4U8o6mW-6ovmPHJLBHJEvXbzcSg8kITUBAWFhAtejRbcuMQ49UEtd8OsSZtWrdsx0RX23wgBEqXxtfQiYY5Xzd1c70wsmvbnVKzu1cE2w"
+
+const adminID = 406140312
 
 const vk = new VK({
 	token: token
@@ -27,29 +29,36 @@ updates.startPolling()
 })
 
 updates.on('message_new', async (message) => {
-    if(message.senderId != 406140312) {
+    if(message.senderId != adminID) {
         return
     }
     if(!message.text) {
         return
     }
     let text = message.text
-    
+
     if(text.toLowerCase() == "пользователи") {
 
-        let likes = fs.readFileSync('./data/like-data.json')
-        let likeUsers = JSON.parse(likes)
-        let games = fs.readFileSync('./data/games-data.json')
-        let gameUsers = JSON.parse(games)
+        let likes = JSON.parse(fs.readFileSync('./data/like-data.json'))
+        let games = JSON.parse(fs.readFileSync('./data/games-data.json'))
+        let likeUsers = ""
+        let gameUsers = ""
+        likes.forEach((user) => {
+            likeUsers = likeUsers + `${user.name} @id${user.vkid} \n`
+        })
+        games.forEach((user) => {
+            gameUsers = likeUsers + `${user.name} @id${user.vkid} \n`
+        })
+        console.log(likeUsers)
 
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
+            peer_id: adminID,
             message: `Пользователи автолайка: \n${likeUsers}`
         })
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
+            peer_id: adminID,
             message: `Пользователи автоигр: \n${gameUsers}`
         })
     }
@@ -58,8 +67,8 @@ updates.on('message_new', async (message) => {
         type = "autolike"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
-            message: "Введи токен пользователя, чтобы подключить его к автолайку"
+            peer_id: adminID,
+            message: "Введи токен пользователя в формате t *token*, чтобы подключить его к автолайку"
         })
         return
     }
@@ -67,8 +76,8 @@ updates.on('message_new', async (message) => {
         type = "games"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
-            message: "Введи токен пользователя, чтобы подключить его к играм"
+            peer_id: adminID,
+            message: "Введи токен пользователя в формате t *token*, чтобы подключить его к играм"
         })
         return
     }
@@ -76,8 +85,8 @@ updates.on('message_new', async (message) => {
         type = "all"
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
-            message: "Введи токен пользователя, чтобы подключить его к играм и автолайку"
+            peer_id: adminID,
+            message: "Введи токен пользователя в формате t *token*, чтобы подключить его к играм и автолайку"
         })
         return
     }
@@ -87,7 +96,7 @@ updates.on('message_new', async (message) => {
 
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
+            peer_id: adminID,
             message: `Жду новый токен для пользователя в формате "c *token*"`
         })
     }
@@ -96,7 +105,7 @@ updates.on('message_new', async (message) => {
         if(!userToChange) {
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 406140312,
+                peer_id: adminID,
                 message: `Не указан пользователь для изменения`
             })
             return
@@ -115,7 +124,7 @@ updates.on('message_new', async (message) => {
         if(currentUserLikes.length < 1 && currentUserGames.length < 1) {
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 406140312,
+                peer_id: adminID,
                 message: `Такой пользователь не найден`
             })
             return
@@ -151,7 +160,7 @@ updates.on('message_new', async (message) => {
 
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 406140312,
+            peer_id: adminID,
             message: `Пользователь обновлён`
         })
 
@@ -184,6 +193,15 @@ updates.on('message_new', async (message) => {
             user.vkid = response[0].id
 
             if(type == "autolike") {
+                let currentUserLikes = likeUsers.filter(u => u.vkid == user.vkid)
+                if(currentUserLikes.length > 0) {
+                    await vk.api.messages.send({
+                        random_id: getRandomId(),
+                        peer_id: adminID,
+                        message: `Пользователь ${user.name} ${user.surname} уже существует`
+                    })
+                    return
+                }
                 likeUsers.push({
                     name: user.name,
                     surname: user.surname,
@@ -192,6 +210,15 @@ updates.on('message_new', async (message) => {
                 })
             }
             if(type == "games") {
+                let currentUserGames = gameUsers.filter(u => u.vkid == user.vkid)
+                if(currentUserGames.length > 0) {
+                    await vk.api.messages.send({
+                        random_id: getRandomId(),
+                        peer_id: adminID,
+                        message: `Пользователь ${user.name} ${user.surname} уже существует`
+                    })
+                    return
+                }
                 gameUsers.push({
                     name: user.name,
                     surname: user.surname,
@@ -200,6 +227,17 @@ updates.on('message_new', async (message) => {
                 })
             }
             if(type == "all") {
+                let currentUserLikes = likeUsers.filter(u => u.vkid == user.vkid)
+                let currentUserGames = gameUsers.filter(u => u.vkid == user.vkid)
+                if(currentUserLikes.length > 0 || currentUserGames.length > 0) {
+                    await vk.api.messages.send({
+                        random_id: getRandomId(),
+                        peer_id: adminID,
+                        message: `Пользователь ${user.name} ${user.surname} уже существует`
+                    })
+                    return
+                }
+
                 likeUsers.push({
                     name: user.name,
                     surname: user.surname,
@@ -217,7 +255,7 @@ updates.on('message_new', async (message) => {
 
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 406140312,
+                peer_id: adminID,
                 message: `Пользователь ${user.name} ${user.surname} (@id${user.vkid}) добавлен`
             })
 
@@ -233,8 +271,8 @@ updates.on('message_new', async (message) => {
 
             await vk.api.messages.send({
                 random_id: getRandomId(),
-                peer_id: 406140312,
-                message: error
+                peer_id: adminID,
+                message: errorText
             })
         })
     }
