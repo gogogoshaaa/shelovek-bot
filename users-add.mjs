@@ -3,7 +3,7 @@ import VKCaptchaSolver from 'vk-captchasolver'
 import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
 
-const token = "vk1.a.4QUIPVW4uQ0INxd1fLLdoxPQMaWPt3pOOqkeirnspDa40MsbOaqhTZQq_3tkZW2dXzK9VtffKY5viL6b2Zja4Lm2vOtTkeOHUDNoTqPNUeKBl4U8o6mW-6ovmPHJLBHJEvXbzcSg8kITUBAWFhAtejRbcuMQ49UEtd8OsSZtWrdsx0RX23wgBEqXxtfQiYY5Xzd1c70wsmvbnVKzu1cE2w"
+const token = "vk1.a.hduNi-7YwnfWrCvs07H6hk_es3y8HmYU3Wt0PNOdidtE6DrcAtLsv3NAeYqTTmiPcGgqz1TxDQUUmZ6vXG2qlL1251i2VamkuUb6x6ZI3dI8M1LZ1_m107JmbYY0n2wxXfXWZpRL67rLooroeXHauSpyZ14NzSA0va3mlcjV5UzPjwBedPrsZKRj4PO6kAmDhmD8ZpHQUcBnVZJa-5fcQA"
 
 const adminID = 406140312
 
