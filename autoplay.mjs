@@ -23,9 +23,6 @@ process.on('uncaughtException', function(error) {
 	if(error.includes("internal server error")) {
 		error = "internal server error"
 	}
-	if(error.includes("flood control")) {
-		error = "flood control"
-	}
     console.log("some error: ", error)
 })
 
@@ -137,27 +134,27 @@ users.filter(user => user.token !== null).forEach(async (user, userID) => {
 
                 error = JSON.stringify(error)
 
-				if(error.includes("was aborted")) {
-					error = "abort: "
-				}
-				if(error.includes("invalid access_token")) {
-					error = "invalid token: "
-				}
-				if(error.includes("you are in users blacklist")) {
-					error = "in users blacklist: "
-				}
-				if(error.includes("captcha needed")) {
-					error = "captcha needed: "
-				}
-				if(error.includes("unknown error")) {
-					error = "unknown error: "
-				}
-				if(error.includes("internal server error")) {
-					error = "internal server error: "
-				}
-				if(error.includes("flood control")) {
-					error = "flood control: "
-				}
+			if(error.includes("was aborted")) {
+				error = "abort: "
+			}
+			if(error.includes("invalid access_token")) {
+				error = "invalid token: "
+			}
+			if(error.includes("you are in users blacklist")) {
+				error = "in users blacklist: "
+			}
+			if(error.includes("captcha needed")) {
+				error = "captcha needed: "
+			}
+			if(error.includes("unknown error")) {
+				error = "unknown error: "
+			}
+			if(error.includes("internal server error")) {
+				error = "internal server error: "
+			}
+			if(error.includes("flood control")) {
+				error = "flood control: "
+			}
 	
 				console.log(error, ", resending...: ", user.name, user.surname)
 
