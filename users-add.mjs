@@ -34,6 +34,25 @@ updates.on('message_new', async (message) => {
         return
     }
     let text = message.text
+    
+    if(text.toLowerCase() == "пользователи") {
+
+        let likes = fs.readFileSync('./data/like-data.json')
+        let likeUsers = JSON.parse(likes)
+        let games = fs.readFileSync('./data/games-data.json')
+        let gameUsers = JSON.parse(games)
+
+        await vk.api.messages.send({
+            random_id: getRandomId(),
+            peer_id: 448409696,
+            message: `Пользователи автолайка: \n${likeUsers}`
+        })
+        await vk.api.messages.send({
+            random_id: getRandomId(),
+            peer_id: 448409696,
+            message: `Пользователи автоигр: \n${gameUsers}`
+        })
+    }
 
     if(text.toLowerCase() == "автолайк") {
         type = "autolike"
