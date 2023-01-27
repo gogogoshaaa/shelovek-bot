@@ -10,7 +10,7 @@ console.log("posts monitoring started...")
 let checkPostsInterval = setInterval(checkPosts, 5000)
 
 const myvk = await new VK({
-	token: "твой токен для проверки новых постов"
+	token: "vk1.a.TBSoI_yoMh02ispZPdSG2xIrIYIiRbckRgEggrZAkrnxawJP2nGai3JAGz12G3VP5xNBzMYbjxwhFDi1wCGfTXDngCo6vpAbOf286JsRDBEetMSt_BSXFn5EmHo4lI9grswm2H9qn_6Xq8xyDHl-3WNuxBJtBNJ0PmClzr95TgbMmN4z5p2mXI1u3fCES-mHKDG47taMzsJPkkwIG-bhKA"
 })
 
 let newPost = false
