@@ -85,9 +85,9 @@ updates.on('message_new', async (message) => {
 
         let newToken = text.substring(2)
 
-        let likes = fs.readFileSync('./like-data.json')
+        let likes = fs.readFileSync('./data/like-data.json')
         let likeUsers = JSON.parse(likes)
-        let games = fs.readFileSync('./games-data.json')
+        let games = fs.readFileSync('./data/games-data.json')
         let gameUsers = JSON.parse(games)
 
         let currentUserLikes = likeUsers.filter(user => user.vkid == userToChange)
@@ -136,8 +136,8 @@ updates.on('message_new', async (message) => {
             message: `Пользователь обновлён`
         })
 
-        fs.writeFileSync('./like-data.json', JSON.stringify(likeUsers))
-        fs.writeFileSync('./games-data.json', JSON.stringify(gameUsers))
+        fs.writeFileSync('./data/like-data.json', JSON.stringify(likeUsers))
+        fs.writeFileSync('./data/games-data.json', JSON.stringify(gameUsers))
 
     }
 
@@ -155,9 +155,9 @@ updates.on('message_new', async (message) => {
         })
         .then(async (response) => {
 
-            let likes = fs.readFileSync('./like-data.json')
+            let likes = fs.readFileSync('./data/like-data.json')
             let likeUsers = JSON.parse(likes)
-            let games = fs.readFileSync('./games-data.json')
+            let games = fs.readFileSync('./data/games-data.json')
             let gameUsers = JSON.parse(games)
 
             user.name = response[0].first_name
@@ -202,8 +202,8 @@ updates.on('message_new', async (message) => {
                 message: `Пользователь ${user.name} ${user.surname} (@id${user.vkid}) добавлен`
             })
 
-            fs.writeFileSync('./like-data.json', JSON.stringify(likeUsers))
-            fs.writeFileSync('./games-data.json', JSON.stringify(gameUsers))
+            fs.writeFileSync('./data/like-data.json', JSON.stringify(likeUsers))
+            fs.writeFileSync('./data/games-data.json', JSON.stringify(gameUsers))
         })
         .catch(async (error) => {
 
