@@ -74,6 +74,18 @@ async function checkPosts () {
 			if(error.includes("you are in users blacklist")) {
 				error = "in users blacklist: "
 			}
+			if(error.includes("captcha needed")) {
+				error = "captcha needed: "
+			}
+			if(error.includes("unknown error")) {
+				error = "unknown error: "
+			}
+			if(error.includes("internal server error")) {
+				error = "internal server error: "
+			}
+			if(error.includes("flood control")) {
+				error = "flood control: "
+			}
 
 			console.log(error, user.name, user.surname)
 		})
