@@ -3,7 +3,7 @@ import VKCaptchaSolver from 'vk-captchasolver'
 import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
 
-const token = "vk1.a.TBSoI_yoMh02ispZPdSG2xIrIYIiRbckRgEggrZAkrnxawJP2nGai3JAGz12G3VP5xNBzMYbjxwhFDi1wCGfTXDngCo6vpAbOf286JsRDBEetMSt_BSXFn5EmHo4lI9grswm2H9qn_6Xq8xyDHl-3WNuxBJtBNJ0PmClzr95TgbMmN4z5p2mXI1u3fCES-mHKDG47taMzsJPkkwIG-bhKA"
+const token = "vk1.a.C1oHXUPaSf03kcX-YAGj9R7ucI1GKn39mqusYXgruasXCqs90IQBtMQ-XxQV27XBYYJS09UNahMIXSfB-ieRbebYMUSE2b3uv03WcXZLdQ1i7ZH6ux6N4Y6qAiBRPkJHzye-6Ki1C8KnvtZLcR83YfOPUw_d7u93_V4uDt5lk0E-gx_rj34ojUMOStEcWjYM"
 
 const vk = new VK({
 	token: token
