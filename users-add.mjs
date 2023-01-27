@@ -2,6 +2,7 @@ import { VK, API, Updates, getRandomId } from 'vk-io'
 import VKCaptchaSolver from 'vk-captchasolver'
 import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
+import pm2 from 'pm2'
 
 const token = "vk1.a.hduNi-7YwnfWrCvs07H6hk_es3y8HmYU3Wt0PNOdidtE6DrcAtLsv3NAeYqTTmiPcGgqz1TxDQUUmZ6vXG2qlL1251i2VamkuUb6x6ZI3dI8M1LZ1_m107JmbYY0n2wxXfXWZpRL67rLooroeXHauSpyZ14NzSA0va3mlcjV5UzPjwBedPrsZKRj4PO6kAmDhmD8ZpHQUcBnVZJa-5fcQA"
 
@@ -21,6 +22,8 @@ const updates = new Updates({
 
 let type = "autolike"
 let userToChange
+
+console.log("users-add script started")
 
 updates.startPolling()
 .catch((error) => {
@@ -167,6 +170,38 @@ updates.on('message_new', async (message) => {
         fs.writeFileSync('./data/like-data.json', JSON.stringify(likeUsers))
         fs.writeFileSync('./data/games-data.json', JSON.stringify(gameUsers))
 
+        pm2.connect(() => {
+            pm2.restart("autolike-all")
+            pm2.restart("autoplay-all")
+        })
+
+    }
+
+    if(text.substring(0, 2).toLowerCase() == "d ") {
+        let userToDelete = text.substring(2)
+
+        let likes = fs.readFileSync('./data/like-data.json')
+        let likeUsers = JSON.parse(likes)
+        let games = fs.readFileSync('./data/games-data.json')
+        let gameUsers = JSON.parse(games)
+
+        likeUsers = likeUsers.filter(user => user.vkid !== userToDelete)
+        gameUsers = gameUsers.filter(user => user.vkid !== userToDelete)
+
+
+        await vk.api.messages.send({
+            random_id: getRandomId(),
+            peer_id: adminID,
+            message: `Пользователь удалён`
+        })
+
+        fs.writeFileSync('./data/like-data.json', JSON.stringify(likeUsers))
+        fs.writeFileSync('./data/games-data.json', JSON.stringify(gameUsers))
+
+        pm2.connect(() => {
+            pm2.restart("autolike-all")
+            pm2.restart("autoplay-all")
+        })
     }
 
     if(text.substring(0, 2).toLowerCase() == "t " || text.substring(0, 2).toLowerCase()  == "т ") {
@@ -261,6 +296,11 @@ updates.on('message_new', async (message) => {
 
             fs.writeFileSync('./data/like-data.json', JSON.stringify(likeUsers))
             fs.writeFileSync('./data/games-data.json', JSON.stringify(gameUsers))
+
+            pm2.connect(() => {
+                pm2.restart("autolike-all")
+                pm2.restart("autoplay-all")
+            })
         })
         .catch(async (error) => {
 
