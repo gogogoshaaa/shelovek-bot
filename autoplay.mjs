@@ -26,7 +26,7 @@ process.on('uncaughtException', function(error) {
     console.log("some error: ", error)
 })
 
-import users from "./games-data.json" assert { type: 'json' }
+import users from "./data/games-data.json" assert { type: 'json' }
 
 console.log("games monitoring started...")
 
