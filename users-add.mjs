@@ -3,7 +3,7 @@ import VKCaptchaSolver from 'vk-captchasolver'
 import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
 
-const token = "vk1.a.C1oHXUPaSf03kcX-YAGj9R7ucI1GKn39mqusYXgruasXCqs90IQBtMQ-XxQV27XBYYJS09UNahMIXSfB-ieRbebYMUSE2b3uv03WcXZLdQ1i7ZH6ux6N4Y6qAiBRPkJHzye-6Ki1C8KnvtZLcR83YfOPUw_d7u93_V4uDt5lk0E-gx_rj34ojUMOStEcWjYM"
+const token = "vk1.a.hduNi-7YwnfWrCvs07H6hk_es3y8HmYU3Wt0PNOdidtE6DrcAtLsv3NAeYqTTmiPcGgqz1TxDQUUmZ6vXG2qlL1251i2VamkuUb6x6ZI3dI8M1LZ1_m107JmbYY0n2wxXfXWZpRL67rLooroeXHauSpyZ14NzSA0va3mlcjV5UzPjwBedPrsZKRj4PO6kAmDhmD8ZpHQUcBnVZJa-5fcQA"
 
 const vk = new VK({
 	token: token
@@ -215,7 +215,7 @@ updates.on('message_new', async (message) => {
             await vk.api.messages.send({
                 random_id: getRandomId(),
                 peer_id: 406140312,
-                message: errorText
+                message: error
             })
         })
     }
