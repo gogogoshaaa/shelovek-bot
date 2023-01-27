@@ -44,12 +44,12 @@ updates.on('message_new', async (message) => {
 
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: `Пользователи автолайка: \n${likeUsers}`
         })
         await vk.api.messages.send({
             random_id: getRandomId(),
-            peer_id: 448409696,
+            peer_id: 406140312,
             message: `Пользователи автоигр: \n${gameUsers}`
         })
     }
