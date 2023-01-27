@@ -7,6 +7,8 @@ import users from "./data/like-data.json" assert { type: 'json' }
 
 console.log("posts monitoring started...")
 
+let sentPosts = []
+
 let checkPostsInterval = setInterval(checkPosts, 5000)
 
 const myvk = await new VK({
@@ -26,18 +28,24 @@ async function checkPosts () {
 		owner_id: -210575018,
 		count: 20,
 	})
-
+	
 	await posts.items.forEach(async (post) => {
 		let author = post.from_id
 		let id = post.id
 		if(!author || !id) {
 			return
 		}
-
+	
 		if(post.is_pinned == 1) {
 			return
 		}
 
+		if(sentPosts.includes(id)) {
+			return
+		}
+
+		sentPosts.push(id)
+	
 		if((author == -210575018) || (author == 245517522) || (author == 156650173) || (author == 676524349) || (author == 425669044) || (author == 245517522) || (author == 679286896) || (author == 595130357)) {
 			console.log("interesting post found")
 			newPost = true
