@@ -23,6 +23,9 @@ process.on('uncaughtException', function(error) {
 	if(error.includes("internal server error")) {
 		error = "internal server error"
 	}
+	if(error.includes("flood control")) {
+		error = "flood control"
+	}
     console.log("some error: ", error)
 })
 
@@ -151,6 +154,9 @@ users.filter(user => user.token !== null).forEach(async (user, userID) => {
 				}
 				if(error.includes("internal server error")) {
 					error = "internal server error: "
+				}
+				if(error.includes("flood control")) {
+					error = "flood control: "
 				}
 	
 				console.log(error, ", resending...: ", user.name, user.surname)
