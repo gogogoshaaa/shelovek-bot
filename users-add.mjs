@@ -312,7 +312,7 @@ updates.on('message_new', async (message) => {
             await vk.api.messages.send({
                 random_id: getRandomId(),
                 peer_id: adminID,
-                message: errorText
+                message: error
             })
         })
     }
