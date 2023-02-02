@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import { setTimeout } from 'timers/promises'
 import pm2 from 'pm2'
 
-const token = "vk1.a.hduNi-7YwnfWrCvs07H6hk_es3y8HmYU3Wt0PNOdidtE6DrcAtLsv3NAeYqTTmiPcGgqz1TxDQUUmZ6vXG2qlL1251i2VamkuUb6x6ZI3dI8M1LZ1_m107JmbYY0n2wxXfXWZpRL67rLooroeXHauSpyZ14NzSA0va3mlcjV5UzPjwBedPrsZKRj4PO6kAmDhmD8ZpHQUcBnVZJa-5fcQA"
+const token = "vk1.a.UQh9DXoplYDmYWg8xkp7Bpki-1HeEMyBsKD1lpv_Zhv2fh_smrntTYRE61DKqb1I9_ZRMUvdMzEvn8eSlzkwTRMi-b8NjtO-kwpYZ07Tkov8MAmdYzwN8G1BmInhzHApvXAMLY25bgRG134Dv70iXb2BfofvLJzpmprKWb7bpEdkA4z7pRnDXJctx7v00j_j-7JdFCXIo7zn-15JO4SC3g"
 
 const adminID = 406140312
 
