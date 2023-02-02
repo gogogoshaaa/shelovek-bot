@@ -5,7 +5,7 @@ import { setTimeout } from 'timers/promises'
 import users from "./like-data.json" assert { type: 'json' }
 
 
-let token = "vk1.a.TBSoI_yoMh02ispZPdSG2xIrIYIiRbckRgEggrZAkrnxawJP2nGai3JAGz12G3VP5xNBzMYbjxwhFDi1wCGfTXDngCo6vpAbOf286JsRDBEetMSt_BSXFn5EmHo4lI9grswm2H9qn_6Xq8xyDHl-3WNuxBJtBNJ0PmClzr95TgbMmN4z5p2mXI1u3fCES-mHKDG47taMzsJPkkwIG-bhKA"
+let token = "vk1.a.UQh9DXoplYDmYWg8xkp7Bpki-1HeEMyBsKD1lpv_Zhv2fh_smrntTYRE61DKqb1I9_ZRMUvdMzEvn8eSlzkwTRMi-b8NjtO-kwpYZ07Tkov8MAmdYzwN8G1BmInhzHApvXAMLY25bgRG134Dv70iXb2BfofvLJzpmprKWb7bpEdkA4z7pRnDXJctx7v00j_j-7JdFCXIo7zn-15JO4SC3g"
 
 const vk = new VK({
 	token: token
