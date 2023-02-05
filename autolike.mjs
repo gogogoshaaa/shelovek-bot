@@ -12,7 +12,7 @@ let sentPosts = []
 let checkPostsInterval = setInterval(checkPosts, 5000)
 
 const myvk = await new VK({
-	token: "vk1.a.AFPPjbj5A-5hPOGyLPN14HSCudUB10RSeKkmoP2k6DATLq10rbi0iptu7B8aYCa64NAFUDjSWlH1vu4xdQwVLW4mxBiMQ63S2dd6LncUeJ0qcQ3GDLctReTApw_X2a4m7ZJapJiO-PD5dYIWN8za9-sPaPZuM_56adrny2ECKUY2fQ7ADmQ4YMrL5gVi6F2Tz9Ooj5ypvrkASxwG9OI0LQ"
+	token: "vk1.a.UQh9DXoplYDmYWg8xkp7Bpki-1HeEMyBsKD1lpv_Zhv2fh_smrntTYRE61DKqb1I9_ZRMUvdMzEvn8eSlzkwTRMi-b8NjtO-kwpYZ07Tkov8MAmdYzwN8G1BmInhzHApvXAMLY25bgRG134Dv70iXb2BfofvLJzpmprKWb7bpEdkA4z7pRnDXJctx7v00j_j-7JdFCXIo7zn-15JO4SC3g"
 })
 
 let newPost = false
